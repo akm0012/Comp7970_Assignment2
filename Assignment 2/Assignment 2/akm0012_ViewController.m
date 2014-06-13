@@ -30,6 +30,11 @@
 // Constants
 static const CGFloat buttonHeight = 40;
 static const CGFloat buttonWidth = 120;
+
+//static const CGFloat title_label_width = 300;
+
+static const CGFloat label_height = 60;
+
 static const CGFloat spacing = 20;
 
 - (void)viewDidLoad
@@ -69,7 +74,14 @@ static const CGFloat spacing = 20;
 
 - (void) layoutPortrait {
     
+    CGRect bounds = self.view.bounds;
     
+    CGFloat title_label_width = CGRectGetWidth(bounds) - (2 * spacing);
+    CGFloat title_label_height = label_height;
+    
+    self.title_label.frame = CGRectMake(3.5 * spacing, spacing, title_label_width, title_label_height);
+
+
 }
 
 - (void) layoutLandscape {
