@@ -1,6 +1,8 @@
+//  Author: Andrew K. Marshall
+//  Last Revision: 6/15/14
+//  COMP 7970: Assignment 2
 //
 //  akm0012_ViewController.m
-//  Assignment 2
 //
 //  Created by Andrew Marshall on 6/11/14.
 //  Copyright (c) 2014 Comp_7970_akm0012. All rights reserved.
@@ -31,15 +33,8 @@
 // Constants
 static const CGFloat buttonHeight = 40;
 static const CGFloat buttonWidth = 80;
-
-//static const CGFloat title_label_width = 300;
-
-//static const CGFloat label_height = 60;
 static const CGFloat label_height = 50;
-
 static const CGFloat text_field_height = 30;
-
-
 static const CGFloat spacing = 20;
 
 - (void)viewDidLoad
@@ -73,25 +68,25 @@ static const CGFloat spacing = 20;
     // Make sure the values are valid
     if (loan_amt < 0) {
         NSString *loan_amt_error = @"The loan amount must be positive.";
-        [self show_alert:loan_amt_error];
+        [self show_input_alert:loan_amt_error];
         return;
     }
     
     else if (num_payments <= 0) {
         NSString *loan_amt_error = @"The number of payments must be greater than 0.";
-        [self show_alert:loan_amt_error];
+        [self show_input_alert:loan_amt_error];
         return;
     }
     
     else if (interest_rate < 0 || interest_rate > 100) {
         NSString *loan_amt_error = @"The interest rate must be in the range of 0 and 100.";
-        [self show_alert:loan_amt_error];
+        [self show_input_alert:loan_amt_error];
         return;
     }
     
     else if (ballon_pmt < 0) {
         NSString *loan_amt_error = @"The ballon payment amount must be positive.";
-        [self show_alert:loan_amt_error];
+        [self show_input_alert:loan_amt_error];
         return;
     }
     
@@ -109,9 +104,10 @@ static const CGFloat spacing = 20;
     // Convert the interest rate to a decimal value
     interest_rate = interest_rate / 100;
     
+    // Calculate the payment amount
     float payment_amount_float = [self calculate_payment_amt:loan_amt :num_payments :interest_rate :ballon_pmt];
     
-    
+    // Format the payment amount
     NSString *payment_display_text = [NSString stringWithFormat:@"%.02f", payment_amount_float];
     
     self.payment_display_label.text = payment_display_text;
@@ -155,7 +151,7 @@ static const CGFloat spacing = 20;
     
 }
 
-- (void) show_alert:(NSString*) msg_in {
+- (void) show_input_alert:(NSString*) msg_in {
     
     NSString *alertTitleString = @"Input Error, try again!";
     NSString *alertCancelString = @"OK";
