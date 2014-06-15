@@ -142,6 +142,11 @@ static const CGFloat spacing = 20;
     
 }
 
-
+- (IBAction)backgroundTap:(id)sender {
+    [self.loan_amt_textField resignFirstResponder];
+    [self.num_payment_textField resignFirstResponder];
+    [self.interest_rate_textField resignFirstResponder];
+    [self.ballon_pmt_textField resignFirstResponder];
+}
 
 @end
